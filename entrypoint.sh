@@ -11,7 +11,6 @@ cd /home/container || exit 1
 
 SSH_KEY=/home/container/.ssh/id_rsa
 
-# Generate SSH key if it doesn't exist and exit after
 if [ ! -f "$SSH_KEY" ]; then
     mkdir -p /home/container/.ssh
     ssh-keygen -q -t rsa -b 4096 -N "" -f "$SSH_KEY"
@@ -22,7 +21,6 @@ if [ ! -f "$SSH_KEY" ]; then
     exit 0
 fi
 
-# Git repo logic
 REPO_PATH="/home/container/garrysmod"
 REPO_URL="git@github.com:voltageeee/shustroe1488.git"
 
@@ -42,7 +40,6 @@ fi
 
 cd /home/container || exit 1
 
-# Continue with original Pterodactyl startup logic
 PARSED=$(echo "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g' | eval echo "$(cat -)")
 
 if [ "${STEAM_USER}" == "" ]; then
